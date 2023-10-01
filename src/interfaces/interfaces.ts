@@ -2,11 +2,9 @@ import { Schema, Types } from "mongoose"
 
 export interface IUser{
     name: string,
-    email: string,
-    password: string,
-    role: string,
-    verified?: boolean,
-    profile: Schema.Types.ObjectId,
+    phone?: string,
+    image?: IImage,
+    address?: string
 }
 
 
@@ -97,4 +95,11 @@ export interface IOrder{
     userId: Schema.Types.ObjectId,
     cartId: Schema.Types.ObjectId,
     status: string
+}
+export interface IAccount{
+    email: string,
+    password: string,
+    role: string,
+    verified?: boolean
+    user: Schema.Types.ObjectId,
 }
