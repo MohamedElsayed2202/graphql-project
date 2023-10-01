@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import { createHandler } from "graphql-http/lib/use/express";
 import expressPlayground from "graphql-playground-middleware-express"
-import schema from "../graphql/schema";
+import schema from "./graphql/schema";
 
 
 const app = express();
