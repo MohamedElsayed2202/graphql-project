@@ -1,4 +1,16 @@
-import {GraphQLSchema, GraphQLObjectType, GraphQLString} from "graphql"
+import {GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInputObjectType, GraphQLNonNull} from "graphql"
+
+
+
+const nameInputType = new GraphQLInputObjectType({
+    name: 'NameInput',
+    fields: {
+        name:{ 
+            type: new GraphQLNonNull(GraphQLString),
+        }
+    }
+})
+
 
 
 const rootQuery = new GraphQLObjectType({
@@ -6,7 +18,11 @@ const rootQuery = new GraphQLObjectType({
     fields: {
         users: {
             type: GraphQLString,
-            resolve: () => "hellow world"
+            resolve: (_,context) => {
+                console.log(context);
+                
+                return "hellow world"
+            }
         }
     }
 })
@@ -16,7 +32,14 @@ const rootMutation = new GraphQLObjectType({
     fields: {
         createUser:{
             type: GraphQLString,
-            resolve: () => "hellow world" 
+            args:{
+                name: {
+                    type: nameInputType
+                }
+            },
+            resolve: (_,args, context) =>{
+                
+            } 
         }
     }
 })
