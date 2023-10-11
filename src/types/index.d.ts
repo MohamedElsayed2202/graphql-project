@@ -6,7 +6,8 @@ export {}
 declare global {
     namespace Express {
         export interface Request {
-            user?: Document<unknown, {}, IUser> & IUser & { _id: Types.ObjectId; };
+            user?: Document<unknown, {}, IUser> & IUser & { _id: Types.ObjectId; },
+            auth?: boolean
         }
     }
 }

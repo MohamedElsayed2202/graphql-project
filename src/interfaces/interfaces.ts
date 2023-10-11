@@ -4,7 +4,8 @@ export interface IUser{
     name: string,
     phone?: string,
     image?: IImage,
-    address?: string
+    address?: string,
+    accID: Types.ObjectId
 }
 
 
@@ -96,10 +97,11 @@ export interface IOrder{
     cartId: Schema.Types.ObjectId,
     status: string
 }
+
 export interface IAccount{
     email: string,
     password: string,
     role: string,
     verified?: boolean
-    user: Schema.Types.ObjectId,
+    // user: Schema.Types.ObjectId,
 }
