@@ -10,6 +10,8 @@ const rootMutation = new GraphQLObjectType({
             type: GraphQLString,
             args: {data: {type: TAccountInput}},
             resolve: (_,{data}:{data: IAccount}, {req, res}:{req: Request, res: Response}) =>{
+                
+                
                 // const data = args.data as IAccount
                 console.log(data.email);
                 console.log(req.auth);
