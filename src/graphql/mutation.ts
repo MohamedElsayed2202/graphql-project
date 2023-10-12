@@ -2,6 +2,7 @@ import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLStrin
 import { TAccountInput } from "../types/custome-types";
 import { IAccount } from "../interfaces/interfaces";
 import { Request, Response } from "express";
+import { accountSchema, validateSchema } from "../utils/validations";
 
 const rootMutation = new GraphQLObjectType({
     name: "Mutation",
@@ -9,7 +10,8 @@ const rootMutation = new GraphQLObjectType({
         register:{
             type: GraphQLString,
             args: {data: {type: TAccountInput}},
-            resolve: (_,{data}:{data: IAccount}, {req, res}:{req: Request, res: Response}) =>{
+            resolve: async (_,{data}:{data: IAccount}, {req, res}:{req: Request, res: Response}) =>{
+                await validateSchema(accountSchema, data);
                 
                 
                 // const data = args.data as IAccount

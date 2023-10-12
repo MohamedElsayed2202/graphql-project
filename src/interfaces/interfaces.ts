@@ -101,7 +101,7 @@ export interface IOrder{
 export interface IAccount{
     email: string,
     password: string,
-    role: string,
+    role?: string,
     verified?: boolean
     // user: Schema.Types.ObjectId,
 }
