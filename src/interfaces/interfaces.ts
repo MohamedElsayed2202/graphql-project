@@ -1,3 +1,4 @@
+import { Request, Response } from "express"
 import { Schema, Types } from "mongoose"
 
 export interface IUser{
@@ -5,7 +6,6 @@ export interface IUser{
     phone?: string,
     image?: IImage,
     address?: string,
-    accID: Types.ObjectId
 }
 
 
@@ -103,5 +103,24 @@ export interface IAccount{
     password: string,
     role?: string,
     verified?: boolean
-    // user: Schema.Types.ObjectId,
+    user: Schema.Types.ObjectId,
+}
+
+export interface IContext{
+    req: Request,
+    res: Response
+}
+
+export interface IYubValidationError {
+    path: string | undefined,
+    errors: string[]
+}
+
+export interface ICreateAccount{
+    name: string,
+    email: string,
+    password: string,
+    role?: string,
+    phone?: string,
+    address?: string
 }

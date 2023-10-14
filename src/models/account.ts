@@ -13,7 +13,7 @@ const schema = new Schema<IAccount, Model<IAccount>>({
   },
   role: { type: String, enum: ["admin", "user", "owner"], default: "user" },
   verified: {type: Boolean, default: false},
-  // user: {type: Schema.Types.ObjectId, required: true, ref: 'User'}
+  user: {type: Schema.Types.ObjectId, required: true, ref: 'User'}
 });
 
 const Account = mongoose.model("Account", schema);

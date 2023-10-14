@@ -15,7 +15,7 @@ const schema = new Schema<IUser, Model<IUser>>({
         _id: false,
     },
     address: String,
-    accID: {type: Schema.Types.ObjectId, required: true, ref: 'Account'}
+    // account: {type: Schema.Types.ObjectId, required: true, ref: 'Account'}
 })
 
  const User = mongoose.model('User', schema);
