@@ -46,26 +46,49 @@ export async function registerUser(
   return { _id: acc._id, email: acc.email, role: acc.role, user: acc.user };
 }
 
-export async function getTokens(id: string, role: string): Promise<Tokens> {
-    const token = sign({
+export async function getTokenAndRefreshToken(
+  id: string,
+  role: string
+): Promise<Tokens> {
+  const token = sign(
+    {
       id: id,
-      role: role
-    }, process.env.token_secret!, { expiresIn: '2h' });
-  
-    const refreshToken = sign({
+      role: role,
+    },
+    process.env.token_secret!,
+    { expiresIn: "2h" }
+  );
+
+  const refreshToken = sign(
+    {
       id: id,
-      role: role
-    }, process.env.refresh_secret!);
-  
-    const expiredAt = new Date();
-    // expiredAt.setDate(expiredAt.getDate() + 7); the correct one 
-    expiredAt.setHours(expiredAt.getHours() + .5); // for testing 
-  
-    const toke = await Token.create({
-      token: refreshToken,
-      userId: id,
-      expiredAt: expiredAt
-    });
-    
-    return { token, refreshToken }
+      role: role,
+    },
+    process.env.refresh_secret!
+  );
+
+  const expiredAt = new Date();
+  // expiredAt.setDate(expiredAt.getDate() + 7); the correct one
+  expiredAt.setHours(expiredAt.getHours() + 0.5); // for testing
+
+  const toke = await Token.create({
+    token: refreshToken,
+    userId: id,
+    expiredAt: expiredAt,
+  });
+
+  return { token, refreshToken };
+}
+
+export async function getToken(id: string,
+  role: string): Promise<Omit<Tokens, "refreshToken">> {
+    const token = sign(
+      {
+        id: id,
+        role: role,
+      },
+      process.env.token_secret!,
+      { expiresIn: "2h" }
+    );
+    return {token}
   }

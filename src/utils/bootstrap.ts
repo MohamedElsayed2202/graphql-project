@@ -12,11 +12,10 @@ const bootstrap = (app: any) => {
     "/graphql",
     createHandler({
       schema: schema,
-      context: ({raw, context}) => {
-        console.log(raw.auth, raw.user, raw.tokenIsExpired);
+      context: ({ raw, context }) => {
         return { req: raw, res: context.res };
       },
-      formatError: formatError
+      formatError: formatError,
     })
   );
   app.get("/playground", expressPlayground({ endpoint: "/graphql" }));

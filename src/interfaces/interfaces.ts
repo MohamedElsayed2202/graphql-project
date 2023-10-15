@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { Schema, Types } from "mongoose"
 
 export interface IUser{
-    name: string,
+    name?: string,
     phone?: string,
     image?: IImage,
     address?: string,
@@ -34,8 +34,8 @@ export interface IProfile{
 }
 
 export interface IImage{
-        url: string,
-        id: string
+        url?: string,
+        id?: string
 }
 
 export interface IProduct {
@@ -123,4 +123,9 @@ export interface ICreateAccount{
     role?: string,
     phone?: string,
     address?: string
+}
+
+export interface ILoginRequest{
+    email: string,
+    password: string
 }
